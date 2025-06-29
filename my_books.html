@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBookshelf - My Books</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container container">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span>MyBookshelf</span>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="my_books.html" class="nav-link active">My Books</a>
+                <a href="#" class="nav-link">Discover</a>
+            </nav>
+
+            <a href="profile.html" class="user-profile">U</a>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-bar">
+                    <img src="images/magnifying-glass.svg" alt="Search" class="search-icon">
+                    <input type="text" class="search-input" placeholder="Search your books and folders...">
+                </div>
+                <button class="add-folder-btn">
+                    <img src="images/plus.svg" alt="Add" class="add-icon">
+                    <span>Add Folder</span>
+                </button>
+            </div>
+            
+            <!-- Folders Section -->
+            <div class="folders-section">
+                <h2 class="folders-title">My Folders</h2>
+                <div class="folders-grid">
+                    <div class="folder-item">
+                        <div class="folder-icon">📚</div>
+                        <div class="folder-title">Fiction</div>
+                    </div>
+                    <div class="folder-item">
+                        <div class="folder-icon">🔬</div>
+                        <div class="folder-title">Science Fiction</div>
+                    </div>
+                    <div class="folder-item">
+                        <div class="folder-icon">🏛️</div>
+                        <div class="folder-title">History</div>
+                    </div>
+                    <div class="folder-item">
+                        <div class="folder-icon">🧠</div>
+                        <div class="folder-title">Psychology</div>
+                    </div>
+                    <div class="folder-item">
+                        <div class="folder-icon">💼</div>
+                        <div class="folder-title">Business</div>
+                    </div>
+                    <div class="folder-item">
+                        <div class="folder-icon">🎨</div>
+                        <div class="folder-title">Art & Design</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -14,10 +14,11 @@
         <div class="logo-icon">📚</div>
         <span>MyBookshelf</span>
       </div>
-      <nav class="nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="my_books.html" class="nav-link">My Books</a>
-        <a href="discover.html" class="nav-link">Discover</a>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+      <nav class="nav" id="nav-menu">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="my_books.html" class="nav-link">My Books</a>
+      <a href="discover.html" class="nav-link">Discover</a>
       </nav>
       <a href="profile.html" class="user-profile">U</a>
     </div>
@@ -57,6 +58,12 @@
         </div>
       </section>
 
+      <section id="saved-reviews">
+        <h2>Your Book Reviews</h2>
+        <ul id="review-list"></ul>
+      </section>
+
+
       <section class="section">
         <h2 class="section-title">Goals</h2>
         <p style="font-size: 0.875rem; color: #374151;">You’re 3 books away from your 2025 goal. Keep going!</p>
@@ -64,5 +71,8 @@
       </section>
     </div>
   </main>
+<script src="scripts.js"></script>
 </body>
 </html>
+
+

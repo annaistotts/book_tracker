@@ -238,11 +238,66 @@ async function displayViewAll(categoryName) {
   section.appendChild(loadMoreBtn);
   let startIndex = 0;
   let allLoaded = false;
+  let allBooks = [];
   async function loadMore() {
     loadMoreBtn.disabled = true;
     loadMoreBtn.textContent = 'Loading...';
     const books = (await fetchBooks(category, startIndex, PAGE_SIZE)).filter(book => book.image);
-    renderBookGrid(section, books);
+    // Append new books to allBooks
+    allBooks = allBooks.concat(books);
+    // Only render the new books (append to grid)
+    books.forEach(book => {
+      // Container for cover + meta
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.flexDirection = 'column';
+      container.style.alignItems = 'stretch';
+      container.style.width = '220px';
+      // Book cover
+      const coverDiv = document.createElement('div');
+      coverDiv.className = 'book-cover';
+      coverDiv.style.width = '220px';
+      coverDiv.style.height = '330px';
+      coverDiv.style.margin = '0';
+      // Make the cover a link
+      const coverLink = document.createElement('a');
+      coverLink.href = book.infoLink;
+      coverLink.target = '_blank';
+      coverLink.rel = 'noopener';
+      coverLink.style.display = 'block';
+      coverLink.style.width = '100%';
+      coverLink.style.height = '100%';
+      coverLink.style.overflow = 'hidden';
+      coverLink.innerHTML = `<img src="${book.image}" alt="${book.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;border:none;" />`;
+      coverDiv.appendChild(coverLink);
+      // Title + Save row (below cover)
+      const belowDiv = document.createElement('div');
+      belowDiv.className = 'book-meta-row';
+      belowDiv.style.width = '220px';
+      // Title
+      const title = document.createElement('div');
+      title.className = 'book-title';
+      title.textContent = book.title;
+      title.style.flex = '1';
+      title.style.fontSize = '0.95rem';
+      title.style.overflow = 'hidden';
+      title.style.textOverflow = 'ellipsis';
+      title.style.whiteSpace = 'nowrap';
+      // Save button
+      const saveBtn = document.createElement('button');
+      saveBtn.className = 'circle-add-btn';
+      saveBtn.title = 'Save to folder';
+      saveBtn.innerHTML = '<span class="plus-icon">+</span>';
+      saveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSaveModal(book);
+      });
+      belowDiv.appendChild(title);
+      belowDiv.appendChild(saveBtn);
+      container.appendChild(coverDiv);
+      container.appendChild(belowDiv);
+      grid.appendChild(container);
+    });
     startIndex += PAGE_SIZE;
     loadMoreBtn.disabled = false;
     loadMoreBtn.textContent = 'Load More';

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderFolder({emoji, title}, index) {
     const folderDiv = document.createElement('div');
     folderDiv.className = 'folder-item';
+    folderDiv.style.cursor = 'pointer';
     folderDiv.innerHTML = `
       <div class="folder-icon">
         <button class="folder-edit-btn" title="Edit Folder" data-index="${index}">
@@ -38,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
     folderDiv.querySelector('.folder-edit-btn').addEventListener('click', (e) => {
       e.stopPropagation();
       openEditModal(index);
+    });
+    // Make folder clickable to open
+    folderDiv.addEventListener('click', (e) => {
+      if (e.target.closest('.folder-edit-btn')) return;
+      window.location.href = `my_books.html?folder=${index}`;
     });
     foldersGrid.appendChild(folderDiv);
   }
@@ -176,6 +182,130 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
     editingIndex = null;
   });
+
+  // --- Folder Contents View ---
+  const folderContentsSection = document.getElementById('folder-contents-section');
+  const folderContentsTitle = document.getElementById('folder-contents-title');
+  const folderBooksGrid = document.getElementById('folder-books-grid');
+  const folderEmptyState = document.getElementById('folder-empty-state');
+  const backToFoldersBtn = document.getElementById('back-to-folders');
+
+  function getUrlParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+
+  function showFolderContents(index) {
+    const folders = getFolders();
+    const folder = folders[index];
+    if (!folder) return;
+    // Hide folder list, show folder contents
+    document.querySelector('.folders-section').style.display = 'none';
+    folderContentsSection.style.display = '';
+    folderContentsTitle.textContent = `${folder.emoji} ${folder.title}`;
+    folderBooksGrid.innerHTML = '';
+    folderBooksGrid.className = 'book-grid'; // Use the same grid as discover.html
+    const books = folder.books || [];
+    if (books.length === 0) {
+      folderEmptyState.style.display = '';
+    } else {
+      folderEmptyState.style.display = 'none';
+      books.forEach((book, bookIdx) => {
+        // Container for cover + meta
+        const container = document.createElement('div');
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+        container.style.alignItems = 'stretch';
+        container.style.width = '220px';
+        // Book cover
+        const coverDiv = document.createElement('div');
+        coverDiv.className = 'book-cover';
+        coverDiv.style.width = '220px';
+        coverDiv.style.height = '330px';
+        coverDiv.style.margin = '0';
+        // Make the cover a link
+        const coverLink = document.createElement('a');
+        coverLink.href = book.infoLink;
+        coverLink.target = '_blank';
+        coverLink.rel = 'noopener';
+        coverLink.style.display = 'block';
+        coverLink.style.width = '100%';
+        coverLink.style.height = '100%';
+        coverLink.style.overflow = 'hidden';
+        coverLink.innerHTML = `<img src="${book.image}" alt="${book.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;border:none;" />`;
+        coverDiv.appendChild(coverLink);
+        // Title row (below cover)
+        const titleRow = document.createElement('div');
+        titleRow.className = 'book-title-row';
+        titleRow.style.width = '220px';
+        titleRow.style.marginTop = '0.5rem';
+        const title = document.createElement('div');
+        title.className = 'book-title';
+        title.textContent = book.title;
+        title.style.fontSize = '1rem';
+        title.style.fontWeight = '600';
+        title.style.overflow = 'hidden';
+        title.style.textOverflow = 'ellipsis';
+        title.style.whiteSpace = 'nowrap';
+        titleRow.appendChild(title);
+        // Actions row (Mark as read + Remove)
+        const actionsRow = document.createElement('div');
+        actionsRow.className = 'book-actions-row';
+        actionsRow.style.display = 'flex';
+        actionsRow.style.justifyContent = 'space-between';
+        actionsRow.style.alignItems = 'center';
+        actionsRow.style.width = '220px';
+        actionsRow.style.marginTop = '0.5rem';
+        // Mark as read button
+        const markReadBtn = document.createElement('button');
+        markReadBtn.className = 'modal-add-btn';
+        markReadBtn.textContent = 'Mark as read';
+        markReadBtn.style.flex = '1';
+        markReadBtn.style.marginRight = '0.5rem';
+        // TODO: Add mark as read logic if needed
+        // Remove (minus) button
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'circle-remove-btn';
+        removeBtn.title = 'Remove from folder';
+        removeBtn.innerHTML = '<span class="minus-icon">&minus;</span>';
+        removeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          removeBookFromFolder(index, book.infoLink);
+        });
+        actionsRow.appendChild(markReadBtn);
+        actionsRow.appendChild(removeBtn);
+        container.appendChild(coverDiv);
+        container.appendChild(titleRow);
+        container.appendChild(actionsRow);
+        folderBooksGrid.appendChild(container);
+      });
+    }
+  }
+
+  function removeBookFromFolder(folderIdx, infoLink) {
+    const folders = getFolders();
+    if (!folders[folderIdx] || !folders[folderIdx].books) return;
+    folders[folderIdx].books = folders[folderIdx].books.filter(b => b.infoLink !== infoLink);
+    saveFolders(folders);
+    showFolderContents(folderIdx);
+  }
+
+  if (backToFoldersBtn) {
+    backToFoldersBtn.addEventListener('click', () => {
+      window.location.href = 'my_books.html';
+    });
+  }
+
+  // On load, check for folder param
+  const folderParam = getUrlParam('folder');
+  if (folderParam !== null) {
+    document.querySelector('.folders-section').style.display = 'none';
+    folderContentsSection.style.display = '';
+    showFolderContents(Number(folderParam));
+  } else {
+    document.querySelector('.folders-section').style.display = '';
+    folderContentsSection.style.display = 'none';
+  }
 
   // Initial load
   loadFolders();

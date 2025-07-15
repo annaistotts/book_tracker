@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBookshelf - My Books</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/Logo.svg">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-container container">
             <div class="logo">
-                <div class="logo-icon">📚</div>
+                <img src="images/Logo.svg" alt="Logo" class="logo-icon" style="width:32px;height:32px;"/>
                 <span>MyBookshelf</span>
             </div>
             
@@ -51,6 +52,15 @@
                 <div class="empty-state" id="empty-state" style="display:none;">No folders yet. Click "Add Folder" to create your first folder!</div>
             </div>
         </section>
+        <!-- Folder Contents View -->
+        <section class="folder-contents-section" id="folder-contents-section" style="display:none;">
+            <div class="folder-header-row">
+                <button id="back-to-folders" class="add-folder-btn">&larr; Back to Folders</button>
+                <h2 class="folders-title" id="folder-contents-title"></h2>
+            </div>
+            <div class="folder-books-grid" id="folder-books-grid"></div>
+            <div class="empty-state" id="folder-empty-state" style="display:none;">No books in this folder yet.</div>
+        </section>
     </main>
 
     <!-- Add Folder Modal -->
@@ -76,7 +86,7 @@
                     <option value="⚽">⚽ Soccer Ball</option>
                     <option value="🧩">🧩 Puzzle Piece</option>
                     <option value="🧪">🧪 Test Tube</option>
-                    <option value="🦋">🦋 Butterfly</option>
+                    <option value="🦋">�� Butterfly</option>
                     <option value="🌲">🌲 Tree</option>
                     <option value="🚀">🚀 Rocket</option>
                     <option value="🗺️">🗺️ Map</option>

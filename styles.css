@@ -224,9 +224,18 @@ body {
 /* Book Grid */
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+/* Row below book cover for title and Save button */
+.book-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
 .book-cover {
@@ -770,22 +779,32 @@ body {
 #edit-folder-form select:focus {
   border: 1.5px solid #6c63ff;
 }
+/* Ensure Save button matches modal-add-btn style */
 .modal-add-btn {
-  background: #6c63ff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background 0.2s;
-  justify-content: center;
-  text-align: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+    white-space: nowrap;
 }
+
 .modal-add-btn:hover {
-  background: #554ee2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.modal-add-btn:active {
+    transform: translateY(0);
 }
 
 /* Edit Modal Delete Button */
@@ -828,4 +847,98 @@ body {
   margin-top: 0;
   display: flex;
   align-items: center;
+}
+
+/* Folder header row spacing for folder view */
+.folder-header-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+/* Ensure folder title and emoji are vertically centered with the button */
+.folder-header-row .folders-title {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    gap: 0.5rem;
+}
+
+/* Book title row below cover */
+.book-title-row {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Book actions row below title */
+.book-actions-row {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Circular minus button for remove */
+.circle-remove-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  padding: 0;
+  margin-left: 0.25rem;
+}
+.circle-remove-btn:hover {
+  background: #e0e7ff;
+  border-color: #3b82f6;
+}
+.minus-icon {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  font-weight: bold;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.circle-add-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 1.5px solid #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  padding: 0;
+  margin-left: 0.25rem;
+}
+.circle-add-btn:hover {
+  background: #2563eb;
+  border-color: #1d4ed8;
+}
+.plus-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
 }

@@ -418,9 +418,11 @@ body {
 }
 
 .folders-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .folder-item {
@@ -621,4 +623,209 @@ body {
     .folder-title {
         font-size: 0.8125rem;
     }
+}
+
+.view-all-btn {
+  margin-top: 0.75rem;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.view-all-btn:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+/* Folder Edit Button Styles */
+.folder-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* Remove .folder-box and ensure .folder-icon is the blue box */
+.folder-icon {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #3b82f6;
+  border: 2px solid #e0e7ff;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+}
+.folder-icon span {
+  display: block;
+  font-size: 3rem;
+}
+.folder-edit-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: box-shadow 0.2s;
+  padding: 0;
+}
+.folder-edit-btn:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+}
+.folder-edit-btn img {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+}
+.folder-title {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Modal Styles (shared for add/edit) */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  min-width: 320px;
+  max-width: 90vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-modal:hover {
+  color: #222;
+}
+#add-folder-form, #edit-folder-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+#add-folder-form label, #edit-folder-form label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+#add-folder-form input,
+#add-folder-form select,
+#edit-folder-form input,
+#edit-folder-form select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+#add-folder-form input:focus,
+#add-folder-form select:focus,
+#edit-folder-form input:focus,
+#edit-folder-form select:focus {
+  border: 1.5px solid #6c63ff;
+}
+.modal-add-btn {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+  justify-content: center;
+  text-align: center;
+}
+.modal-add-btn:hover {
+  background: #554ee2;
+}
+
+/* Edit Modal Delete Button */
+.modal-delete-btn {
+  background: #fff;
+  color: #e53e3e;
+  border: 1.5px solid #e53e3e;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.modal-delete-btn:hover {
+  background: #e53e3e;
+  color: #fff;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.edit-modal-btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal-add-btn, .modal-delete-btn {
+  vertical-align: middle;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
 }

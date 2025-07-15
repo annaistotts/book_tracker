@@ -17,8 +17,8 @@
             
             <div class="menu-toggle" id="menu-toggle">☰</div>
             <nav class="nav" id="nav-menu">
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="my_books.html" class="nav-link">My Books</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="my_books.html" class="nav-link active">My Books</a>
             <a href="discover.html" class="nav-link">Discover</a>
             </nav>
 
@@ -36,7 +36,7 @@
                     <img src="images/magnifying-glass.svg" alt="Search" class="search-icon">
                     <input type="text" class="search-input" placeholder="Search your books and folders...">
                 </div>
-                <button class="add-folder-btn">
+                <button class="add-folder-btn" id="add-folder-btn">
                     <img src="images/plus.svg" alt="Add" class="add-icon">
                     <span>Add Folder</span>
                 </button>
@@ -46,34 +46,222 @@
             <div class="folders-section">
                 <h2 class="folders-title">My Folders</h2>
                 <div class="folders-grid">
-                    <div class="folder-item">
-                        <div class="folder-icon">📚</div>
-                        <div class="folder-title">Fiction</div>
-                    </div>
-                    <div class="folder-item">
-                        <div class="folder-icon">🔬</div>
-                        <div class="folder-title">Science Fiction</div>
-                    </div>
-                    <div class="folder-item">
-                        <div class="folder-icon">🏛️</div>
-                        <div class="folder-title">History</div>
-                    </div>
-                    <div class="folder-item">
-                        <div class="folder-icon">🧠</div>
-                        <div class="folder-title">Psychology</div>
-                    </div>
-                    <div class="folder-item">
-                        <div class="folder-icon">💼</div>
-                        <div class="folder-title">Business</div>
-                    </div>
-                    <div class="folder-item">
-                        <div class="folder-icon">🎨</div>
-                        <div class="folder-title">Art & Design</div>
-                    </div>
+                    <!-- Folders will be rendered here by JS -->
                 </div>
+                <div class="empty-state" id="empty-state" style="display:none;">No folders yet. Click "Add Folder" to create your first folder!</div>
             </div>
         </section>
     </main>
-<script src="scripts.js"></script>
+
+    <!-- Add Folder Modal -->
+    <div class="modal" id="add-folder-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Add New Folder</h2>
+            <form id="add-folder-form">
+                <label for="folder-title">Folder Title</label>
+                <input type="text" id="folder-title" name="folder-title" required maxlength="20" placeholder="Enter folder name...">
+                <label for="folder-emoji">Choose Emoji</label>
+                <select id="folder-emoji" name="folder-emoji" required>
+                    <option value="📚">📚 Books</option>
+                    <option value="🔬">🔬 Microscope</option>
+                    <option value="🏛️">🏛️ Classical Building</option>
+                    <option value="🧠">🧠 Brain</option>
+                    <option value="💼">💼 Briefcase</option>
+                    <option value="🎨">🎨 Art Palette</option>
+                    <option value="🌍">🌍 Globe</option>
+                    <option value="📖">📖 Open Book</option>
+                    <option value="📝">📝 Memo</option>
+                    <option value="🎵">🎵 Musical Note</option>
+                    <option value="⚽">⚽ Soccer Ball</option>
+                    <option value="🧩">🧩 Puzzle Piece</option>
+                    <option value="🧪">🧪 Test Tube</option>
+                    <option value="🦋">🦋 Butterfly</option>
+                    <option value="🌲">🌲 Tree</option>
+                    <option value="🚀">🚀 Rocket</option>
+                    <option value="🗺️">🗺️ Map</option>
+                    <option value="🏆">🏆 Trophy</option>
+                    <option value="🎬">🎬 Clapper Board</option>
+                    <option value="🖥️">🖥️ Computer</option>
+                    <option value="📷">📷 Camera</option>
+                    <option value="🧵">🧵 Thread</option>
+                    <option value="🍎">🍎 Apple</option>
+                    <option value="🌟">🌟 Star</option>
+                    <option value="🦄">🦄 Unicorn</option>
+                    <option value="🐶">🐶 Dog</option>
+                    <option value="🐱">🐱 Cat</option>
+                    <option value="🐦">🐦 Bird</option>
+                    <option value="🐢">🐢 Turtle</option>
+                    <option value="🐠">🐠 Fish</option>
+                    <option value="🌸">🌸 Cherry Blossom</option>
+                    <option value="🌵">🌵 Cactus</option>
+                    <option value="🌈">🌈 Rainbow</option>
+                    <option value="🔥">🔥 Fire</option>
+                    <option value="💡">💡 Light Bulb</option>
+                    <option value="📅">📅 Calendar</option>
+                    <option value="📌">📌 Pushpin</option>
+                    <option value="✈️">✈️ Airplane</option>
+                    <option value="🚲">🚲 Bicycle</option>
+                    <option value="🚗">🚗 Car</option>
+                    <option value="🏠">🏠 House</option>
+                    <option value="🏖️">🏖️ Beach</option>
+                    <option value="🏕️">🏕️ Camping</option>
+                    <option value="🏫">🏫 School</option>
+                    <option value="🏥">🏥 Hospital</option>
+                    <option value="🏢">🏢 Office Building</option>
+                    <option value="🏰">🏰 Castle</option>
+                    <option value="🗽">🗽 Statue of Liberty</option>
+                    <option value="🛒">🛒 Shopping Cart</option>
+                    <option value="🎁">🎁 Gift</option>
+                    <option value="🎂">🎂 Birthday Cake</option>
+                    <option value="🍕">🍕 Pizza</option>
+                    <option value="🍔">🍔 Burger</option>
+                    <option value="🍣">🍣 Sushi</option>
+                    <option value="🍩">🍩 Donut</option>
+                    <option value="☕">☕ Coffee</option>
+                    <option value="🍺">🍺 Beer</option>
+                    <option value="🥇">🥇 Gold Medal</option>
+                    <option value="🥁">🥁 Drum</option>
+                    <option value="🎸">🎸 Guitar</option>
+                    <option value="🎮">🎮 Video Game</option>
+                    <option value="🎲">🎲 Game Die</option>
+                    <option value="🎯">🎯 Dartboard</option>
+                    <option value="🎤">🎤 Microphone</option>
+                    <option value="🎧">🎧 Headphones</option>
+                    <option value="🎹">🎹 Piano</option>
+                    <option value="🎻">🎻 Violin</option>
+                    <option value="🧘">🧘 Person in Lotus Position</option>
+                    <option value="🏃">🏃 Runner</option>
+                    <option value="🏋️">🏋️ Weightlifter</option>
+                    <option value="🚴">🚴 Cyclist</option>
+                    <option value="🤹">🤹 Juggler</option>
+                    <option value="🧑‍💻">🧑‍💻 Technologist</option>
+                    <option value="👩‍🔬">👩‍🔬 Scientist</option>
+                    <option value="👨‍🎨">👨‍🎨 Artist</option>
+                    <option value="👩‍🍳">👩‍🍳 Chef</option>
+                    <option value="👨‍🚀">👨‍🚀 Astronaut</option>
+                    <option value="👩‍🏫">👩‍🏫 Teacher</option>
+                    <option value="👨‍⚕️">👨‍⚕️ Doctor</option>
+                    <option value="👮">👮 Police Officer</option>
+                    <option value="🧑‍🚒">🧑‍🚒 Firefighter</option>
+                    <option value="🧑‍🌾">🧑‍🌾 Farmer</option>
+                    <option value="🧑‍🔧">🧑‍🔧 Mechanic</option>
+                    <option value="🧑‍🎓">🧑‍🎓 Student</option>
+                    <option value="🧑‍✈️">🧑‍✈️ Pilot</option>
+                    <option value="🧑‍⚖️">🧑‍⚖️ Judge</option>
+                    <option value="🧑‍🎤">🧑‍🎤 Singer</option>
+                    <option value="🧑‍🏭">🧑‍🏭 Factory Worker</option>
+                </select>
+                <button type="submit" class="modal-add-btn">Add Folder</button>
+            </form>
+        </div>
+    </div>
+    <!-- Edit Folder Modal -->
+    <div class="modal" id="edit-folder-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-edit-modal">&times;</span>
+            <h2>Edit Folder</h2>
+            <form id="edit-folder-form">
+                <label for="edit-folder-title">Folder Title</label>
+                <input type="text" id="edit-folder-title" name="edit-folder-title" required maxlength="20" placeholder="Enter folder name...">
+                <label for="edit-folder-emoji">Choose Emoji</label>
+                <select id="edit-folder-emoji" name="edit-folder-emoji" required>
+                    <option value="📚">📚 Books</option>
+                    <option value="🔬">🔬 Microscope</option>
+                    <option value="🏛️">🏛️ Classical Building</option>
+                    <option value="🧠">🧠 Brain</option>
+                    <option value="💼">💼 Briefcase</option>
+                    <option value="🎨">🎨 Art Palette</option>
+                    <option value="🌍">🌍 Globe</option>
+                    <option value="📖">📖 Open Book</option>
+                    <option value="📝">📝 Memo</option>
+                    <option value="🎵">🎵 Musical Note</option>
+                    <option value="⚽">⚽ Soccer Ball</option>
+                    <option value="🧩">🧩 Puzzle Piece</option>
+                    <option value="🧪">🧪 Test Tube</option>
+                    <option value="🦋">🦋 Butterfly</option>
+                    <option value="🌲">🌲 Tree</option>
+                    <option value="🚀">🚀 Rocket</option>
+                    <option value="🗺️">🗺️ Map</option>
+                    <option value="🏆">🏆 Trophy</option>
+                    <option value="🎬">🎬 Clapper Board</option>
+                    <option value="🖥️">🖥️ Computer</option>
+                    <option value="📷">📷 Camera</option>
+                    <option value="🧵">🧵 Thread</option>
+                    <option value="🍎">🍎 Apple</option>
+                    <option value="🌟">🌟 Star</option>
+                    <option value="🦄">🦄 Unicorn</option>
+                    <option value="🐶">🐶 Dog</option>
+                    <option value="🐱">🐱 Cat</option>
+                    <option value="🐦">🐦 Bird</option>
+                    <option value="🐢">🐢 Turtle</option>
+                    <option value="🐠">🐠 Fish</option>
+                    <option value="🌸">🌸 Cherry Blossom</option>
+                    <option value="🌵">🌵 Cactus</option>
+                    <option value="🌈">🌈 Rainbow</option>
+                    <option value="🔥">🔥 Fire</option>
+                    <option value="💡">💡 Light Bulb</option>
+                    <option value="📅">📅 Calendar</option>
+                    <option value="📌">📌 Pushpin</option>
+                    <option value="✈️">✈️ Airplane</option>
+                    <option value="🚲">🚲 Bicycle</option>
+                    <option value="🚗">🚗 Car</option>
+                    <option value="🏠">🏠 House</option>
+                    <option value="🏖️">🏖️ Beach</option>
+                    <option value="🏕️">🏕️ Camping</option>
+                    <option value="🏫">🏫 School</option>
+                    <option value="🏥">🏥 Hospital</option>
+                    <option value="🏢">🏢 Office Building</option>
+                    <option value="🏰">🏰 Castle</option>
+                    <option value="🗽">🗽 Statue of Liberty</option>
+                    <option value="🛒">🛒 Shopping Cart</option>
+                    <option value="🎁">🎁 Gift</option>
+                    <option value="🎂">🎂 Birthday Cake</option>
+                    <option value="🍕">🍕 Pizza</option>
+                    <option value="🍔">🍔 Burger</option>
+                    <option value="🍣">🍣 Sushi</option>
+                    <option value="🍩">🍩 Donut</option>
+                    <option value="☕">☕ Coffee</option>
+                    <option value="🍺">🍺 Beer</option>
+                    <option value="🥇">🥇 Gold Medal</option>
+                    <option value="🥁">🥁 Drum</option>
+                    <option value="🎸">🎸 Guitar</option>
+                    <option value="🎮">🎮 Video Game</option>
+                    <option value="🎲">🎲 Game Die</option>
+                    <option value="🎯">🎯 Dartboard</option>
+                    <option value="🎤">🎤 Microphone</option>
+                    <option value="🎧">🎧 Headphones</option>
+                    <option value="🎹">🎹 Piano</option>
+                    <option value="🎻">🎻 Violin</option>
+                    <option value="🧘">🧘 Person in Lotus Position</option>
+                    <option value="🏃">🏃 Runner</option>
+                    <option value="🏋️">🏋️ Weightlifter</option>
+                    <option value="🚴">🚴 Cyclist</option>
+                    <option value="🤹">🤹 Juggler</option>
+                    <option value="🧑‍💻">🧑‍💻 Technologist</option>
+                    <option value="👩‍🔬">👩‍🔬 Scientist</option>
+                    <option value="👨‍🎨">👨‍🎨 Artist</option>
+                    <option value="👩‍🍳">👩‍🍳 Chef</option>
+                    <option value="👨‍🚀">👨‍🚀 Astronaut</option>
+                    <option value="👩‍🏫">👩‍🏫 Teacher</option>
+                    <option value="👨‍⚕️">👨‍⚕️ Doctor</option>
+                    <option value="👮">👮 Police Officer</option>
+                    <option value="🧑‍🚒">🧑‍🚒 Firefighter</option>
+                    <option value="🧑‍🌾">🧑‍🌾 Farmer</option>
+                    <option value="🧑‍🔧">🧑‍🔧 Mechanic</option>
+                    <option value="🧑‍🎓">🧑‍🎓 Student</option>
+                    <option value="🧑‍✈️">🧑‍✈️ Pilot</option>
+                    <option value="🧑‍⚖️">🧑‍⚖️ Judge</option>
+                    <option value="🧑‍🎤">🧑‍🎤 Singer</option>
+                    <option value="🧑‍🏭">🧑‍🏭 Factory Worker</option>
+                </select>
+                <div class="edit-modal-btn-row">
+                    <button type="button" class="modal-delete-btn" id="delete-folder-btn">Delete</button>
+                    <button type="submit" class="modal-add-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="my_books.mjs"></script>
 </body>
 </html>

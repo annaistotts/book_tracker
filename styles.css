@@ -562,6 +562,65 @@ body {
   margin-left: auto; 
 }
 
+/* Profile Form Styling */
+.profile-section {
+  background-color: #fdfdfd;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.profile-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.profile-form label {
+  font-weight: 600;
+  color: #444;
+}
+
+.profile-form input,
+.profile-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+  border-color: #3b82f6; 
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.profile-form button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.profile-form button:hover {
+  background-color: #2563eb;
+}
+
+
 /* Responsive Design for My Books */
 @media (max-width: 768px) {
     .main-content {

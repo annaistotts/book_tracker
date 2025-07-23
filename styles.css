@@ -1183,3 +1183,26 @@ body {
   margin-bottom: 0;
   box-sizing: border-box;
 }
+
+/* We can delete from here down if we don't like */
+
+@media (max-width: 1024px) {
+  .book-grid > div {
+    flex: 0 1 30%;
+    max-width: 30%; /* 3 per row on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .book-grid > div {
+    flex: 0 1 45%;
+    max-width: 45%; /* 2 per row on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .book-grid > div {
+    flex: 0 1 100%;
+    max-width: 100%; /* 1 per row on very small screens */
+  }
+}

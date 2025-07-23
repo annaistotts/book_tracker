@@ -29,76 +29,43 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main-content container">
-        <!-- Left Section -->
-        <div class="left-section">
+    <main class="main-content container" style="display: flex; flex-direction: column; gap: 3rem;">
+        <!-- Top Row: Continue Reading + Streak -->
+        <div class="top-row" style="display: flex; gap: 3rem;">
             <!-- Continue Reading -->
-            <section class="section">
+            <section class="section" style="flex: 2;">
                 <h2 class="section-title">Continue Reading</h2>
-                
-                <div class="book-item">
-                    <div class="book-icon"></div>
-                    <div class="book-info">
-                        <h4>Book 1</h4>
-                        <p class="book-preview">Preview of the page will be displayed here...</p>
-                    </div>
-                </div>
-                
-                <div class="book-item">
-                    <div class="book-icon"></div>
-                    <div class="book-info">
-                        <h4>Book 2</h4>
-                        <p class="book-preview">Preview of the page will be displayed here...</p>
-                    </div>
-                </div>
-                
-                <div class="book-item">
-                    <div class="book-icon"></div>
-                    <div class="book-info">
-                        <h4>Book 3</h4>
-                        <p class="book-preview">Preview of the page will be displayed here...</p>
-                    </div>
-                </div>
-                
-                <div class="book-item">
-                    <div class="book-icon"></div>
-                    <div class="book-info">
-                        <h4>Book 4</h4>
-                        <p class="book-preview">Preview of the page will be displayed here...</p>
-                    </div>
-                </div>
+                <!-- Replace the static Continue Reading grid with a container for JS rendering -->
+                <div class="continue-reading-grid" id="continue-reading-grid"></div>
             </section>
-
             <!-- Streak -->
-            <section class="section">
+            <section class="section" style="flex: 1; min-width: 280px; max-width: 350px;">
                 <h2 class="section-title">Streak</h2>
                 <div class="streak-container">
                     <div class="streak-grid">
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
-                        <div class="streak-dot"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
+                        <div class="streak-dot incomplete"></div>
                         <div class="streak-dot incomplete"></div>
                         <div class="streak-dot incomplete"></div>
                         <div class="streak-dot incomplete"></div>
@@ -107,50 +74,52 @@
                         <span class="fire-icon">🔥</span>
                         <span>5 days to go</span>
                     </div>
+                    <div class="streak-actions">
+                        <button class="btn-outline-blue" id="clear-streak-btn" type="button">Clear</button>
+                        <button class="btn-blue" id="mark-read-btn" type="button">Mark Today</button>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <!-- Right Section -->
-        <div class="right-section">
+        <!-- Discover Section (copied from discover.html) -->
+        <div class="discover-row" style="width: 100%;">
             <section class="section">
-                <h2 class="section-title">Discover</h2>
-                
-                <!-- Sci-Fi -->
-                <div>
-                    <h3 class="category-title">Sci-Fi</h3>
-                    <div class="book-grid">
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                    </div>
-                </div>
-
-                <!-- Trending -->
-                <div>
-                    <h3 class="category-title">Trending</h3>
-                    <div class="book-grid">
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                    </div>
-                </div>
-
-                <!-- Friends are Reading -->
-                <div>
-                    <h3 class="category-title">Friends are Reading</h3>
-                    <div class="book-grid">
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                        <div class="book-cover"></div>
-                    </div>
-                </div>
+                <h2 class="section-title">Sci-Fi</h2>
+                <div class="book-grid"></div>
+                <button class="view-all-btn" data-category="Sci-Fi">View All</button>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Fantasy</h2>
+                <div class="book-grid"></div>
+                <button class="view-all-btn" data-category="Fantasy">View All</button>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Adventure</h2>
+                <div class="book-grid"></div>
+                <button class="view-all-btn" data-category="Adventure">View All</button>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Romance</h2>
+                <div class="book-grid"></div>
+                <button class="view-all-btn" data-category="Romance">View All</button>
             </section>
         </div>
     </main>
+    <!-- Save to Folder Modal (copied from discover.html) -->
+    <div class="modal" id="save-folder-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-save-modal">&times;</span>
+            <h2>Save Book to Folder(s)</h2>
+            <form id="save-folder-form">
+                <div id="save-folder-list">
+                    <!-- Folder checkboxes will be rendered here by JS -->
+                </div>
+                <button type="submit" class="modal-add-btn">Save</button>
+            </form>
+        </div>
+    </div>
+<script type="module" src="index.mjs"></script>
 <script src="scripts.js"></script>
 </body>
 </html>

@@ -77,4 +77,116 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Profile saved successfully!");
     });
   }
+
+  // --- STREAKS SECTION LOGIC ---
+  const streakGrid = document.querySelector('.streak-grid');
+  const streakDots = streakGrid ? Array.from(streakGrid.querySelectorAll('.streak-dot')) : [];
+  const markBtn = document.getElementById('mark-read-btn');
+  const clearBtn = document.getElementById('clear-streak-btn');
+  const STREAK_KEY = 'readingStreakDays';
+  const NUM_DAYS = streakDots.length;
+
+  // Load streak state from localStorage or default to all false
+  let streakState = Array(NUM_DAYS).fill(false);
+  const stored = JSON.parse(localStorage.getItem(STREAK_KEY));
+  if (Array.isArray(stored) && stored.length === NUM_DAYS) {
+    streakState = stored;
+  }
+
+  // Selection state (for multi-select)
+  let selected = [];
+
+  function renderStreak() {
+    streakDots.forEach((dot, i) => {
+      dot.classList.toggle('selected', selected.includes(i));
+      dot.classList.toggle('marked', streakState[i]);
+      if (streakState[i]) {
+        dot.style.boxShadow = '0 0 0 3px #3b82f6aa';
+        dot.style.opacity = '1';
+      } else {
+        dot.style.boxShadow = '';
+        dot.style.opacity = '0.5';
+      }
+    });
+    updateButtonText();
+    updateClearButton();
+  }
+
+  function updateButtonText() {
+    if (!markBtn) return;
+    if (selected.length === 0) {
+      // Only today (last dot) is relevant
+      if (streakState[NUM_DAYS-1]) {
+        markBtn.textContent = 'Unmark Today';
+      } else {
+        markBtn.textContent = 'Mark Today';
+      }
+    } else {
+      // Multi-select
+      const allMarked = selected.every(i => streakState[i]);
+      if (allMarked) {
+        markBtn.textContent = 'Unmark Selection';
+      } else {
+        markBtn.textContent = 'Mark Selection';
+      }
+    }
+  }
+
+  function updateClearButton() {
+    if (!clearBtn) return;
+    if (selected.length > 0) {
+      clearBtn.style.display = '';
+      clearBtn.textContent = 'Clear Selection';
+    } else {
+      clearBtn.style.display = 'none';
+    }
+  }
+
+  // Dot click handler
+  streakDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (i === NUM_DAYS-1) {
+        // Today dot: single select
+        selected = [];
+        renderStreak();
+      } else {
+        // Toggle selection for manual days
+        if (selected.includes(i)) {
+          selected = selected.filter(idx => idx !== i);
+        } else {
+          selected.push(i);
+        }
+        renderStreak();
+      }
+    });
+  });
+
+  // Mark/Unmark button handler
+  if (markBtn) {
+    markBtn.addEventListener('click', () => {
+      if (selected.length === 0) {
+        // Today
+        streakState[NUM_DAYS-1] = !streakState[NUM_DAYS-1];
+      } else {
+        const allMarked = selected.every(i => streakState[i]);
+        selected.forEach(i => {
+          streakState[i] = allMarked ? false : true;
+        });
+      }
+      localStorage.setItem(STREAK_KEY, JSON.stringify(streakState));
+      selected = [];
+      renderStreak();
+    });
+  }
+
+  // Clear button handler
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      selected = [];
+      renderStreak();
+    });
+  }
+
+  // Initial render
+  renderStreak();
 });

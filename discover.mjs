@@ -8,7 +8,7 @@ const categories = [
 ];
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:';
-const MAX_BOOKS = 4; // Number of covers to show per category
+const MAX_BOOKS = 5; // Number of covers to show per category
 const PAGE_SIZE = 28;
 
 function getSectionByTitle(title) {
@@ -312,11 +312,15 @@ async function displayViewAll(categoryName) {
   await loadMore();
 }
 
+export { displayCovers, setupViewAllButtons };
+
 // --- Init ---
-const categoryParam = getUrlParam('category');
-if (categoryParam) {
-  displayViewAll(categoryParam);
-} else {
-  displayCovers();
-  setupViewAllButtons();
-} 
+document.addEventListener('DOMContentLoaded', () => {
+  const categoryParam = getUrlParam('category');
+  if (categoryParam) {
+    displayViewAll(categoryParam);
+  } else {
+    displayCovers();
+    setupViewAllButtons();
+  }
+}); 

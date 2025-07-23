@@ -519,62 +519,6 @@ body {
     max-width: 180px;
 }
 
-
-/* Book Review Form */
-#review-section {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-}
-
-#review-section h2 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  color: #1f2937;
-}
-
-#review-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-#review-form label {
-  font-weight: 600;
-  color: #374151;
-}
-
-#review-form input,
-#review-form textarea {
-  padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #111827;
-  resize: vertical;
-}
-
-#review-form button {
-  align-self: flex-start;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-#review-form button:hover {
-  background-color: #2563eb;
-}
-
 /* Review List on Profile Page */
 #saved-reviews {
   margin-top: 2rem;
